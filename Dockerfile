@@ -11,7 +11,7 @@ LABEL maintainer="sameer@damagehead.com"
 
 ENV BIND_USER=bind \
     BIND_VERSION=9.16.1 \
-    WEBMIN_VERSION=1.941 \
+    WEBMIN_VERSION=1.955 \
     DATA_DIR=/data
 
 COPY --from=add-apt-repositories /etc/apt/trusted.gpg /etc/apt/trusted.gpg
@@ -26,6 +26,7 @@ RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
+COPY named.conf.options /etc/bind/named.conf.options
 
 RUN chmod 755 /sbin/entrypoint.sh
 
